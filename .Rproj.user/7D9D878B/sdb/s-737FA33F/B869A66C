@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "---\ntitle: \"p8105_hw4_yy2827_problem2\"\nauthor: \"Yunqiu Yao\"\ndate: \"10/25/2017\"\noutput: html_document\n---\n\n```{r}\nlibrary(tidyverse)\nlibrary(janitor)\n```\n\n# Problem 2\n\n### yy2827 (\"project lead\")\n```{r part1, warning=F}\npols = read_csv(\"../data/fivethirtyeight_datasets/pols-month.csv\") %>% \n  clean_names() %>% \n  mutate(date=lubridate::floor_date(mon,\"month\")) %>% \n  select(date,everything(),-mon)\n\ngdp = read_csv(\"../data/fivethirtyeight_datasets/GDP.csv\") %>% \n  clean_names() %>% \n  mutate(value=as.numeric(value))\n\npols_gdp = left_join(pols,gdp,by=\"date\") %>%\n  drop_na(value) %>% \n  filter(value != \".\") %>% \n  mutate(prez=ifelse(prez_dem==0,\"gop\",\"dem\"),\n         prez=as.factor(prez)) %>%\n  select(date,prez,everything(),-c(prez_gop,prez_dem))\n```\n\n### yy2828 (\"collaborator\")\n```{r}\n\n```\n\n\n\n",
+    "contents" : "---\ntitle: \"p8105_hw4_yy2827_problem2\"\nauthor: \"Yunqiu Yao\"\ndate: \"10/25/2017\"\noutput: html_document\n---\n\n```{r}\nlibrary(tidyverse)\nlibrary(janitor)\n```\n\n# Problem 2\n\n### yy2827 (\"project lead\")\n```{r part1, warning=F}\npols = read_csv(\"./data/pols-month.csv\") %>% \n  clean_names() %>% \n  mutate(date=lubridate::floor_date(mon,\"month\")) %>% \n  select(date,everything(),-mon)\n\ngdp = read_csv(\"./data/GDP.csv\") %>% \n  clean_names() %>% \n  mutate(value=as.numeric(value))\n\npols_gdp = left_join(pols,gdp,by=\"date\") %>%\n  drop_na(value) %>% \n  filter(value != \".\") %>% \n  mutate(prez=ifelse(prez_dem==0,\"gop\",\"dem\"),\n         prez=as.factor(prez)) %>%\n  select(date,prez,everything(),-c(prez_gop,prez_dem))\n```\n\n### yy2828 (\"collaborator\")\n```{r}\n\n```\n\n\n\n",
     "created" : 1508960308014.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1884711993",
+    "hash" : "3262638502",
     "id" : "B869A66C",
-    "lastKnownWriteTime" : 1508963852,
-    "last_content_update" : 1508963852452,
+    "lastKnownWriteTime" : 1508964505,
+    "last_content_update" : 1508964505,
     "path" : "~/Documents/17Fall/DS1/HW/p8105_hw4_yy2827/p8105_hw4_yy2827.Rmd",
     "project_path" : "p8105_hw4_yy2827.Rmd",
     "properties" : {
