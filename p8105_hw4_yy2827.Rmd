@@ -14,12 +14,12 @@ library(janitor)
 
 ### yy2827 ("project lead")
 ```{r part1, warning=F}
-pols = read_csv("../data/fivethirtyeight_datasets/pols-month.csv") %>% 
+pols = read_csv("./data/pols-month.csv") %>% 
   clean_names() %>% 
   mutate(date=lubridate::floor_date(mon,"month")) %>% 
   select(date,everything(),-mon)
 
-gdp = read_csv("../data/fivethirtyeight_datasets/GDP.csv") %>% 
+gdp = read_csv("./data/GDP.csv") %>% 
   clean_names() %>% 
   mutate(value=as.numeric(value))
 
