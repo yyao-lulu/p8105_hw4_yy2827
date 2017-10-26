@@ -8,6 +8,8 @@ output: html_document
 ```{r}
 library(tidyverse)
 library(janitor)
+library(ggridges)
+library(ggthemes)
 ```
 
 # Problem 2
@@ -32,8 +34,26 @@ pols_gdp = left_join(pols,gdp,by="date") %>%
 ```
 
 ### yy2828 ("collaborator")
-```{r}
 
+We make a plot to show the GDP value over time, in which blue and red points represent democratic and republican presidents, respectively. It is interesting that the party of president changed every two consecutive terms. The GDP value changed periodly and trended to be less fluctuant during 1949 and 2015. Actually, it is hardly to tell which party did better based on the plot.
+
+```{r}
+pols_gdp %>%
+  ggplot(aes(x = date, y = value)) +
+    geom_line() +
+    geom_point(aes(color = prez)) +
+## change the colors of parties.
+    scale_color_manual(values = c("blue", "red")) +
+    labs(
+      title = "GDP value over time",
+      x = "date",
+      y = "GDP value",
+      color = "party of president"
+    ) +
+    theme_bw() +
+    scale_x_date(date_breaks = "5 years",
+               date_labels = "%Y") +
+    theme(legend.position = "bottom")
 ```
 
 
