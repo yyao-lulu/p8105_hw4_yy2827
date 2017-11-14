@@ -1,0 +1,40 @@
+---
+title: "p8105_hw4_yy2827_problem2"
+author: "Yunqiu Yao"
+date: "10/25/2017"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+# Problem 2
+
+### yy2827 ("project lead")
+```{r part1, warning=F}
+pols = read_csv("./data/pols-month.csv") %>% 
+  clean_names() %>% 
+  mutate(date=lubridate::floor_date(mon,"month")) %>% 
+  select(date,everything(),-mon)
+
+gdp = read_csv("./data/GDP.csv") %>% 
+  clean_names() %>% 
+  mutate(value=as.numeric(value))
+
+pols_gdp = left_join(pols,gdp,by="date") %>%
+  drop_na(value) %>% 
+  filter(value != ".") %>% 
+  mutate(prez=ifelse(prez_dem==0,"gop","dem"),
+         prez=as.factor(prez)) %>%
+  select(date,prez,everything(),-c(prez_gop,prez_dem))
+```
+
+### yy2828 ("collaborator")
+```{r}
+
+```
+
+
+
